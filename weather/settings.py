@@ -84,7 +84,7 @@ WSGI_APPLICATION = "weather.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": BASE_DIR / "app_data" / "database" / "db.sqlite3",
     }
 }
 

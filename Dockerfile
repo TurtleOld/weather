@@ -6,14 +6,14 @@ ENV PYTHONFAULTHANDLER=1 \
     PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1
 
-RUN useradd -m superuser
-USER superuser
-WORKDIR /home/superuser
-COPY . .
-ENV PATH="/home/superuser/.local/bin:$PATH"
+WORKDIR /app
+COPY . /app
+ENV PATH="/root/.local/bin:$PATH"
 RUN curl -sSL https://install.python-poetry.org | python3 - && poetry --version
 RUN pip install --upgrade pip
-RUN pip install -r /home/superuser/requirements.txt
+RUN pip install -r requirements.txt
+
+RUN chmod -R 777 app_data
 
 EXPOSE 8000
 

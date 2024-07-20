@@ -8,7 +8,7 @@ run() {
     DJANGO_SUPERUSER_EMAIL="$SUPERUSER_EMAIL" \
     poetry run python ./manage.py createsuperuser --noinput
 
-  poetry run python ./manage.py runserver --noreload 127.0.0.1:8000
+  gunicorn weather.wsgi:application --bind 0.0.0.0:8000
 }
 
 if [ "$#" -gt 0 ] ; then
