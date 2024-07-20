@@ -51,8 +51,10 @@ def parse_data(json_data: dict[str, Any]) -> list[dict[str, Any]]:
     current_units = json_data.get("current_units", "")
     times = current.get("time", "")
     temperatures = current.get("temperature_2m", "")
+    wind_speed = current.get("wind_speed_10m", "")
     apparent_temperatures = current.get("apparent_temperature", "")
     degree = current_units.get("temperature_2m", "")
+    wind_speed_unit = current_units.get("wind_speed_10m", "")
 
     result = [
         {
@@ -60,6 +62,8 @@ def parse_data(json_data: dict[str, Any]) -> list[dict[str, Any]]:
             "temperature": temperatures,
             "apparent_temperature": apparent_temperatures,
             "degree": degree,
+            "wind_speed": wind_speed,
+            "wind_speed_unit": wind_speed_unit,
         }
     ]
     return result
@@ -72,7 +76,8 @@ def get_weather_info(city: str):
         "name": city,
         "latitude": lat,
         "longitude": lon,
-        "current": "temperature_2m,apparent_temperature",
+        "wind_speed_unit": "ms",
+        "current": "temperature_2m,apparent_temperature,wind_speed_10m",
         "timezone": tz,
     }
 

@@ -4,7 +4,7 @@ services:
   nginx:
     image: nginx:alpine
     ports:
-      - "8090:80"
+      - "8000:80"
     volumes:
       - ${CONF_PATH:-./conf}/nginx.conf:/etc/conf/nginx.conf:ro
       - ${APP_DATA:-./app_data}/files:/app_data/files/

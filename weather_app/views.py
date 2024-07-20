@@ -23,6 +23,9 @@ class WeatherView(FormView):
         cached_weather = cache.get("last_weather")
         if cached_weather:
             context.update(cached_weather)
+        
+        cached_cities = cache.get("cached_cities", [])
+        context["cached_cities"] = cached_cities
 
         return context
 
@@ -34,6 +37,13 @@ class WeatherView(FormView):
         city_count, _ = CityCount.objects.get_or_create(city=city)
         city_count.count += 1
         city_count.save()
+        
+        cached_cities = cache.get("cached_cities", [])
+        
+        if city not in cached_cities:
+            cached_cities.append(city)
+            
+        cache.set("cached_cities", cached_cities)
 
         context = self.get_context_data()
         context["weather_info"] = weather_info
@@ -58,7 +68,6 @@ class CityCountAPIView(APIView):
 
 def get_cities(request) -> JsonResponse:
     query = request.GET.get("q", "")
-    print(query)
     if len(query) > 3:
         cities = get_list_cities(query)
     else:
