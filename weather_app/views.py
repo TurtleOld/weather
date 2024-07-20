@@ -1,10 +1,7 @@
-from django.db.models import F
 from django.http import JsonResponse
 from django.core.cache import cache
-from django.shortcuts import get_object_or_404
 from django.views.generic import FormView
 from django.urls import reverse_lazy
-from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -15,7 +12,7 @@ from weather_app.services import get_weather_info, get_list_cities
 
 
 class WeatherView(FormView):
-    template_name = "templates/weather.html"
+    template_name = "weather.html"
     form_class = WeatherForm
     success_url = reverse_lazy("weather_app:weather")
 
