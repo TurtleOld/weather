@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "weather"
+version = "0.1.0"
+description = ""
+authors = ["TurtleOld <dev@pavlovteam.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^5.0.7"
+requests = "^2.32.3"
+django-bootstrap5 = "^24.2"
+djangorestframework = "^3.15.2"
+daphne = "^4.1.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

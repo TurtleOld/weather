@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <form id="form" method="post" action="{% url "weather_app:weather" %}">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button class="btn btn-outline-primary mt-2" type="submit">Показать</button>
+                </form>
+            </div>
+            <!-- /.col-6 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-12">
+                <div class="weather-info">
+                    <h4>{% if city %}Погода сейчас в городе {{ city }}{% else %}{% endif %}</h4>
+                    <ul class="d-flex flex-row list-group flex-wrap">
+                        {% for weather in weather_info %}
+                            <li class="list-group-item border-0">
+                                <div class="shadow p-3">
+                                    <span>{{ weather.time|date:"H:i" }}</span>
+                                    <p>Температура {{ weather.temperature }} {{ weather.degree }}
+                                        <br><small class="text-warning">Ощущается как: {{ weather.apparent_temperature }} {{ weather.degree }}</small>
+                                    </p>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <!-- /.col-6 -->
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const cityInput = document.querySelector("#id_city");
+            const dataList = document.createElement('datalist');
+            dataList.id = 'city-list';
+            cityInput.setAttribute('list', 'city-list');
+            document.body.appendChild(dataList);
+        
+            cityInput.addEventListener("input", function () {
+                const query = cityInput.value;
+                if (query.length > 3) {
+                    fetch(`/get-city/?q=${query}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            dataList.innerHTML = '';
+                            data.forEach(city => {
+                                const option = document.createElement('option');
+                                option.value = city;
+                                dataList.appendChild(option);
+                            });
+                        });
+                }
+            });
+        });
+
+    </script>
+{% endblock %}

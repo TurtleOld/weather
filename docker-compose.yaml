@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8090:80"
+    volumes:
+      - ${CONF_PATH:-./conf}/nginx.conf:/etc/conf/nginx.conf:ro
+      - ${APP_DATA:-./app_data}/files:/app_data/files/
+    depends_on:
+      - web
+    restart: ${RESTART:-always}
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: weather
+    volumes:
+      - ${APP_DATA:-./app_data}/files:/app_data/files
+    env_file:
+      - .env
+    restart: on-failure
