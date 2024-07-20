@@ -7,13 +7,12 @@ ENV PYTHONFAULTHANDLER=1 \
     PYTHONDONTWRITEBYTECODE=1
 
 WORKDIR /app
-COPY . /app
-ENV PATH="/root/.local/bin:$PATH"
-RUN curl -sSL https://install.python-poetry.org | python3 - && poetry --version
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
-
-RUN chmod -R 777 app_data
+COPY . .
+COPY pyproject.toml poetry.lock ./
+RUN pip install --upgrade pip || true
+RUN pip install poetry \
+&& poetry config virtualenvs.create false \
+&& poetry install
 
 EXPOSE 8000
 

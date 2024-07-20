@@ -36,13 +36,13 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
-    "weather_app.apps.WeatherAppConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "weather_app",
 ]
 
 MIDDLEWARE = [
@@ -57,7 +57,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "weather.urls"
 
-TEMPLATE_DIR = os.path.join(BASE_DIR, "app/../templates")
+TEMPLATE_DIR = os.path.join(BASE_DIR, "app/../../../templates")
 
 TEMPLATES = [
     {
@@ -87,7 +87,6 @@ DATABASES = {
         "NAME": BASE_DIR / "app_data" / "database" / "db.sqlite3",
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

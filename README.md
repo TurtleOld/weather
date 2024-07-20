@@ -1,4 +1,4 @@
-[![wakatime](https://wakatime.com/badge/user/018c5e18-098b-408c-ac80-aa398cd049e6/project/62d3439a-d6fc-4fe8-ae80-e34ba2696d0e.svg)](https://wakatime.com/badge/user/018c5e18-098b-408c-ac80-aa398cd049e6/project/62d3439a-d6fc-4fe8-ae80-e34ba2696d0e)
+[![wakatime](https://wakatime.com/badge/github/TurtleOld/weather.svg)](https://wakatime.com/badge/github/TurtleOld/weather)
 
 # Приложение "Прогноз погоды"
 _____
