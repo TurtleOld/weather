@@ -28,9 +28,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'false').lower() in {'true', '1', 't'}
+DEBUG = os.getenv("DEBUG", "false").lower() in {"true", "1", "t"}
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -131,9 +131,14 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
+CACHE_TTL = 60 * 60 * 24
+
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
         "LOCATION": "unique-snowflake",
+        "TIMEOUT": CACHE_TTL,
     }
 }
+
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 7
