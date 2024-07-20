@@ -1,6 +1,6 @@
 [![wakatime](https://wakatime.com/badge/user/018c5e18-098b-408c-ac80-aa398cd049e6/project/62d3439a-d6fc-4fe8-ae80-e34ba2696d0e.svg)](https://wakatime.com/badge/user/018c5e18-098b-408c-ac80-aa398cd049e6/project/62d3439a-d6fc-4fe8-ae80-e34ba2696d0e)
 
-# Приложения "Прогноз погоды"
+# Приложение "Прогноз погоды"
 _____
 
 **Выполнено в рамках тестового задания**
