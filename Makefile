@@ -1,3 +1,7 @@
+.PHONY: .env
+.env:
+		@test ! -f .env && cp .env.example .env
+
 .PHONY: shell
 shell:
 		@poetry shell
