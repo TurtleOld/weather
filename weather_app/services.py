@@ -1,6 +1,6 @@
 import datetime
 import requests
-from typing_extensions import Any
+from typing import Any
 
 
 def get_lat_lon(city: str) -> tuple[float, float, str]:
